@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Settings</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="SETTINGS.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">PL</div>
+        <div>
+          <h1>Plates</h1>
+          <div class="muted">Food-only social network</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="nav-list">
+        <div class="nav-item active" id="SETTINGS">⚙️ Settings</div>
+        <div class="nav-item" id="feed">🏠 Feed</div>
+        <div class="nav-item" id="PROFILE">👩‍🍳 Profile</div>
+        <div class="nav-item" id="LOGOUTDIV">📍 Logout</div>
+      </div>
+    </nav>
+
+    <!-- SETTINGS PANEL -->
+    <div class="settings-container">
+      <h2>Account Settings</h2>
+
+      <form class="settings-form">
+        <label for="current-username">Current Username</label>
+        <input type="text" id="current-username" required placeholder="Enter current username">
+
+        <label for="current-password">Current Password</label>
+        <input type="password" id="current-password" required placeholder="Enter current password">
+
+        <label for="username">New Username</label>
+        <input type="text" id="username" required placeholder="Enter new username">
+
+        <label for="password">New Password</label>
+        <input type="password" id="password" required placeholder="Enter new password">
+
+        <button type="submit" id="savechanges">Save Changes</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="SETTINGS.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plates — Food Social Mockup</title>
+  <link rel="stylesheet" href="HOME.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Add these styles for comments */
+    .comment-input {
+      display: none; /* Hidden initially */
+      margin-top: 20px;
+    }
+    .comment {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+    .comment-timestamp {
+      font-size: 0.8em;
+      color: #999;
+    }
+    .able {
+      background-color: #007bff !important;
+      color: white !important;
+    }
+    .card-comments {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f0f0f0;
+      border-radius: 5px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .card-comments h4 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="Plates food social mockup">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden>PL</div>
+        <div>
+          <h1>Plates</h1>
+          <div class="muted" style="font-size:12px">Food-only social network</div>
+        </div>
+      </div>
+
+      <div class="search" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:0.6"><path d="M21 21l-4.35-4.35" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+        <input id="globalSearch" placeholder="Search recipes, ingredients, users..." aria-label="Search recipes" />
+        <div class="chips" aria-hidden>
+          <div class="chip">Vegan</div>
+          <div class="chip">Quick</div>
+          <div class="chip">Filipino</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="profile-btn" title="Create a recipe" id="quickCreate">
+          <div style="font-size:14px">New</div>
+        </button>
+        <div class="profile-btn" role="button" aria-label="Open profile">
+          <div class="avatar">PF</div>
+          <div class="muted" style="font-size:13px"><p id="PFPNAME"></p></div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Primary">
+      <div class="nav-list">
+        <div class="nav-item active" id="feed">🏠 Feed</div>
+        <div class="nav-item"id="PROFILE">👩‍🍳 Profile</div>
+        <div class="nav-item" id="SETTINGS">⚙️ Settings</div>
+        <div class="nav-item" id="LOGOUTDIV">📍 Logout</div>
+      </div>
+    </nav>
+
+    <main class="feed" aria-live="polite">
+      <div class="feed-header">
+        <div>
+          <h2 style="margin:0">Discover recipes</h2>
+          <div class="muted" style="font-size:13px">Fresh dishes from the community</div>
+        </div>
+        <div class="filters" role="toolbar" aria-label="Feed filters">
+          <button class="filter-pill">All</button>
+          <button class="filter-pill">Quick</button>
+          <button class="filter-pill">Under 30 mins</button>
+          <button class="filter-pill">Vegan</button>
+          <button class="filter-pill">Dessert</button>
+        </div>
+      </div>
+
+      <section class="cards" id="cardContainer">
+        <!-- cards injected by JS -->
+      </section>
+
+      <div style="margin-top:18px;text-align:center;color:var(--muted)" id="endSignal">— End of feed —</div>
+    </main>
+
+    <aside class="right">
+      <div class="panel" style="margin-bottom:12px">
+        <h3 style="margin-bottom:6px">Filters</h3>
+        <div class="muted" style="font-size:13px">Diet</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="pill">Vegan</button>
+          <button class="pill">Keto</button>
+          <button class="pill">Halal</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Trending</h3>
+        <div class="tag-cloud" style="margin-top:8px">
+          <div class="tag">#sinigang</div>
+          <div class="tag">#adobo</div>
+          <div class="tag">#streetfood</div>
+          <div class="tag">#bread</div>
+          <div class="tag">#quickmeals</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Floating action button -->
+    <button class="fab" id="openModal">＋ Create</button>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal" role="document">
+        <h2 id="modalTitle">Create a new post</h2>
+        <form id="postForm" onsubmit="return false">
+          <div class="form-grid">
+            <div>
+              <div class="form-row">
+                <label>Title</label>
+                <input type="text" id="postTitle" required placeholder="Crispy Adobo with Garlic Rice" />
+              </div>
+              <br>
+              <div class="form-row">
+                <label>Ingredients (one per line)</label>
+                <textarea id="postIngredients" placeholder="Chicken thigh\nSoy sauce\nVinegar\nGarlic"></textarea>
+              </div>
+              <br>
+              <div class="form-row">
+                <label>Description</label>
+                <textarea id="postSteps" placeholder="Description About The Food\Contact Information"></textarea>
+              </div>
+              <br>
+              <div class="form-row">
+                <label>Tags</label>
+                <input type="text" id="postTags" placeholder="adobo, filipino, quick" />
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <label >Cover Image</label>
+
+<!-- Select from PC -->
+<input type="file" id="postImageFile" accept="image/*" style="margin-bottom:8px" />
+
+<!-- Or paste a URL -->
+<input type="text" id="postImage" placeholder="https://.../image.jpg (optional)" />
+
+<div style="font-size:13px;color:var(--muted)">Preview</div>
+<div id="imagePreview" style="
+  height:200px;
+  border-radius:10px;
+  background:#FFF6F0;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+">No image</div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn" id="cancelBtn" type="button">Cancel</button>
+            <button class="btn" id="publishBtn" type="submit" style="background:linear-gradient(90deg,var(--accent),#9F2330);color:white;border-radius:10px;padding:10px 12px">Publish</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- Post Viewer Modal -->
+<div class="modal-backdrop" id="viewModal" style="display:none;">
+  <div class="modal" style="max-width:900px;">
+    <div id="viewImage" style="
+      width:100%; 
+      height:360px; 
+      background-size:cover; 
+      background-position:center; 
+      border-radius:12px;
+    "></div>
+
+    <h2 id="viewTitle" style="margin-top:16px"></h2>
+    <div id="viewMeta" class="muted" style="margin-bottom:10px;"></div>
+
+    <div id="viewTags" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px"></div>
+
+    <div style="display:flex;gap:12px;margin-bottom:18px">
+      <button class="btn">❤️ Like</button>
+      <button class="btn" id="commentBtn">💬 Comment</button>
+      <button class="btn">🔖 Save</button>
+    </div>
+    <div class="comment-input">
+      <h3>Comments</h3>
+      <div id="comments-container">
+        <!-- Comments will be injected here -->
+      </div>
+      <input type="text" placeholder="Say something..." class="usercomment" />
+      <button type="button" id="publish" disabled="disabled">Publish</button>
+    </div>
+    <button class="btn" id="closeView" style="
+      background:#eee;
+      border-radius:10px;
+      padding:8px 14px;
+      display:block;
+      margin-left:auto
+    ">Close</button>
+  </div>
+</div>
+  <script src="HOME.js"> </script>
+  <script src="LOGOUT.js"> </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+:root {
+  --bg: #FFF8F2;
+  --surface: #FFFFFF;
+  --muted: #8E8E9A;
+  --accent: #C0392B;
+  --accent-2: #F7C948;
+  --card-shadow: 0 6px 18px rgba(19, 19, 26, 0.06);
+  --transition: 220ms cubic-bezier(0.2, 0.9, 0.25, 1);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg) 0%, #FFFDFB 100%);
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 40px;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.hero-content {
+  padding: 40px;
+  flex: 1;
+  text-align: center;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #8E2A3A);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin: 0 0 10px;
+  color: var(--accent);
+}
+
+.tagline {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.subtagline {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.hero-image {
+  flex: 1;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-container {
+  background: var(--surface);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px;
+  background: linear-gradient(90deg, var(--accent), #9F2330);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+}
+
+button:disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.attempt-indicator {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin: 0;
+}
+
+.signup-text {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.signup-text a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+/* Admin and reset button visibility and positioning */
+#downloadAccounts, #resetStorage {
+  position: fixed;
+  bottom: 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#downloadAccounts {
+  right: 20px;
+  display: none; /* Hidden by default, shown by JS on admin login */
+}
+
+#resetStorage {
+  right: 160px; /* Positioned next to admin button */
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-image {
+    height: 200px;
+  }
+  #resetStorage {
+    right: 20px;
+    bottom: 60px; /* Stack below admin button on mobile */
+  }
+}

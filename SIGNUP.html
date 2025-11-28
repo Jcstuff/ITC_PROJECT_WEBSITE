@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Plates</title>
+  <link rel="stylesheet" href="SIGNUP.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="logo">PL</div>
+      <h1>Plates</h1>
+      <p class="tagline">Join the Feast</p>
+      <p class="subtagline">Create an account to share recipes, connect with chefs, and explore delicious dishes.</p>
+    </div>
+    <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1551782450-17144efb5723?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=example');"></div>
+  </div>
+
+  <div class="signup-container">
+    <h2>Create Your Account</h2>
+    <form class="signup-form" id="signupForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password (min 6 characters)" required />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+      <button type="submit" id="signupBtn">Sign Up</button>
+      <p class="error" id="errorMsg"></p>
+      <p class="login-text">
+        Already have an account? <a href="LOGIN.html">Login</a>
+      </p>
+    </form>
+  </div>
+
+  <script src="SIGNUP.js"></script>
+</body>
+</html>

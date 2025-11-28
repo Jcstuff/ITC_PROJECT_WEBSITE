@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | Plates — Food Social Mockup</title>
+  <link rel="stylesheet" href="PROFILE.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app" role="application" aria-label="Plates food social mockup">
+    <!-- Topbar (copied from home page for consistency) -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden>PL</div>
+        <div>
+          <h1>Plates</h1>
+          <div class="muted" style="font-size:12px">Food-only social network</div>
+        </div>
+      </div>
+
+      <div class="search" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:0.6"><path d="M21 21l-4.35-4.35" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
+        <input id="globalSearch" placeholder="Search recipes, ingredients, users..." aria-label="Search recipes" />
+        <div class="chips" aria-hidden>
+          <div class="chip">Vegan</div>
+          <div class="chip">Quick</div>
+          <div class="chip">Filipino</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="profile-btn" title="Create a recipe" id="quickCreate">
+          <div style="font-size:14px">New</div>
+        </button>
+        <div class="profile-btn" role="button" aria-label="Open profile">
+          <div class="avatar">PF</div>
+          <div class="muted" style="font-size:13px"><p id="PFPNAME"></p></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar (Profile Info) -->
+    <nav class="sidebar" aria-label="Profile">
+      <div class="nav-list">
+        <div class="nav-item active" id="PROFILE">👩‍🍳 Profile</div>
+        <div class="nav-item" id="feed">🏠 Feed</div>
+        <div class="nav-item" id="SETTINGS">⚙️ Settings</div>
+        <div class="nav-item" id="LOGOUTDIV">📍 Logout</div>
+      </div>
+    </nav>
+
+    <!-- Main Content (Profile Details and Posts) -->
+    <main class="feed" aria-live="polite">
+      <div class="feed-header">
+        <div class="profile-header-content">
+          <div class="profile-pic-display" id="profilePicDisplay">
+            <img src="https://via.placeholder.com/120x120/85193C/FFFFFF?text=Profile+Pic" alt="Profile Picture"/>
+          </div>
+          <div>
+            <h2 style="margin:0" id="username" contenteditable="false"></h2>
+            <div class="muted" style="font-size:13px" id="bio" contenteditable="false">Food lover sharing recipes and culinary adventures! 🍲🍛</div>
+            <button class="upload-pic-btn" id="uploadProfilePicBtn">📷 Upload Profile Pic</button>
+          </div>
+        </div>
+        <button class="edit-profile-btn" id="editProfileBtn">Edit Profile</button>
+      </div>
+
+      <section class="profile-details">
+        <div class="panel">
+          <h3>About</h3>
+          <ul>
+            <li><strong>Address:</strong> <span id="address" contenteditable="false">Cebu City, Philippines</span></li>
+            <li><strong>Contact Number:</strong> <span id="contact" contenteditable="false">+63 912 345 6789</span></li>
+            <li><strong>Website:</strong> <a href="#" id="website" contenteditable="false">www.foods.com</a></li>
+            <li><strong>Email:</strong> <span id="email" contenteditable="false">john@foods.com</span></li>
+            <li><strong>Instagram:</strong> <a href="#" id="instagram" contenteditable="false">food@_chef</a></li>
+            <li><strong>Facebook:</strong> <a href="#" id="facebook" contenteditable="false">fb.com/foods</a></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Favorite Dishes</h3>
+          <div class="tag-cloud">
+            <div class="tag">#lechon</div>
+            <div class="tag">#tinola</div>
+            <div class="tag">#puto-bumbong</div>
+          </div>
+        </div>
+      </section>
+      <h1 class="h1lol">SAVES</h1>
+      <section class="cards" id="cardContainer">
+        <!-- Sample user posts in card format -->
+        <div class="card">
+          <div class="media" style="background-image: url('crispy.jpg');"></div>
+          <div class="content">
+            <div class="meta">John Doe • 2 hours ago</div>
+            <div class="title">Crispy Sinigang na Baboy</div>
+            <div class="tags">
+              <div class="tag">#sinigang</div>
+              <div class="tag">#filipino</div>
+            </div>
+            <div class="actions">
+              <button class="btn like"><span class="heart">❤️</span> Like</button>
+              <button class="btn" id="commentBtn">💬 Comment</button>
+              
+            </div>
+            <div class="comment-input" style="display:none;">
+              <input type="text" placeholder="Say something..." class="usercomment" />
+              <button type="button" class="publish-comment">Publish</button>
+            </div>
+            <div class="card-comments"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="media" style="background-image: url('humba.jpg');"></div>
+          <div class="content">
+            <div class="meta">John Doe • 1 day ago</div>
+            <div class="title">Grandma's Humba</div>
+            <div class="tags">
+              <div class="tag">#humba</div>
+              <div class="tag">#slow-cooked</div>
+            </div>
+            <div class="actions">
+              <button class="btn like"><span class="heart">❤️</span> Like</button>
+              <button class="btn" id="commentBtn">💬 Comment</button>
+              
+            </div>
+            <div class="comment-input" style="display:none;">
+              <input type="text" placeholder="Say something..." class="usercomment" />
+              <button type="button" class="publish-comment">Publish</button>
+            </div>
+            <div class="card-comments"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Right Sidebar (Suggestions) -->
+    <aside class="right">
+      <div class="panel">
+        <h3>Suggestions</h3>
+        <div class="suggestion">
+          <div class="avatar">MC</div>
+          <p>Follow Chef Maria for more recipes!</p>
+          <button class="btn">Follow</button>
+        </div>
+        <div class="suggestion">
+          <div class="avatar">FC</div>
+          <p>Join the Cebu Foodies group.</p>
+          <button class="btn">Join</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Hidden File Inputs for Uploads -->
+    <input type="file" id="profilePicInput" accept="image/*" style="display:none;" />
+    <input type="file" id="coverPhotoInput" accept="image/*" style="display:none;" />
+  </div>
+
+  <script src="PROFILE.js"></script>
+</body>
+</html>
