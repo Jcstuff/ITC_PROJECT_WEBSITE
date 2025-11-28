@@ -44,11 +44,10 @@ body {
   text-align: center;
 }
 
-.logo {
-  width: 60px;
-  height: 60px;
+.logo img {
+  width: 100px;
+  height: 100px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), #8E2A3A);
   display: inline-flex;
   align-items: center;
   justify-content: center;

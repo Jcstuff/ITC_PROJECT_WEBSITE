@@ -65,7 +65,7 @@ header.topbar {
   gap: 12px;
 }
 
-.logo {
+.logo img {
   width: 46px;
   height: 46px;
   border-radius: 10px;
@@ -534,4 +534,8 @@ textarea:focus {
 .card-comments h4 {
   margin: 0 0 10px 0;
   font-size: 14px;
+}
+mark {
+  background: yellow;
+  padding: 2px;
 }
