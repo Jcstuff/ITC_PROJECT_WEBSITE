@@ -539,3 +539,7 @@ mark {
   background: yellow;
   padding: 2px;
 }
+
+.EASTEREGG {
+  background-image: ('walapa.png');
+}
