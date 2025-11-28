@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById("loginBtn");
 
   // Hide admin button by default
-  if (adminButton) {
+  if (adminButton && resetButton) {
     adminButton.style.display = "none";
+    resetButton.style.display = "none";
   }
 
   // Load attempts and update indicator
@@ -53,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (username === "admin" && password === "202515232") {
         if (adminButton) adminButton.style.display = "block";
     }
-
+    if (username === "admin" && password === "202515232") {
+      if (resetButton) resetButton.style.display = "block";
+    }
     if (found) {
       alert("Login successful!");
       localStorage.setItem("loginAttempts", 0);

@@ -179,6 +179,7 @@ button:disabled {
 
 #resetStorage {
   right: 160px; /* Positioned next to admin button */
+  margin-right: 100px;
 }
 
 @media (max-width: 768px) {
